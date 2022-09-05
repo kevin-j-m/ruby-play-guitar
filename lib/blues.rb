@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "blues/version"
+require "zeitwerk"
+loader = Zeitwerk::Loader.for_gem
+loader.setup
 
 module Blues
   class Error < StandardError; end
