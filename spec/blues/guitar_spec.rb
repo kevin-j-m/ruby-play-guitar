@@ -23,12 +23,25 @@ module Blues
     end
 
     describe "#pick" do
+      it "" do
+        guitar = Guitar.new(tuning: :standard)
+        guitar.tune
+
+        expect(guitar.pick(string: 1, fret: 12)).to eq(
+          {
+            string: 1,
+            fret: 12,
+            note: :e,
+          }
+        )
+      end
+
       it "plays notes on every string" do
         guitar = Guitar.new(tuning: :standard)
         guitar.tune
 
         notes = (1..6).map do |string|
-          guitar.pick(string: string, fret: 0)
+          guitar.pick(string: string, fret: 0)[:note]
         end
 
         expect(notes).to eq [

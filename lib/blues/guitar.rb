@@ -10,7 +10,11 @@ module Blues
     end
 
     def pick(string:, fret:)
-      @strings[string - 1].pluck(fret: fret)
+      {
+        string: string,
+        fret: fret,
+        note: @strings[string - 1].pluck(fret: fret),
+      }
     end
 
     def tune(tuning = nil)
