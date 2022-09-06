@@ -6,7 +6,7 @@ module Blues
       it "tunes the string to the tuning specified" do
         string = GuitarString.new(number: 2)
 
-        expect { string.tune(:a) }
+        expect { string.tune(note: :a, octave: 1) }
           .to change { string.tuning_note }
           .from(nil)
           .to(:a)
@@ -16,21 +16,21 @@ module Blues
     describe "#pluck" do
       it "plays the string note if no fret is depressed" do
         string = GuitarString.new(number: 1)
-        string.tune(:e)
+        string.tune(note: :e, octave: 1)
 
         expect(string.pluck(fret: 0).value).to eq :e
       end
 
       it "plays the string note on the 12th fret" do
         string = GuitarString.new(number: 1)
-        string.tune(:e)
+        string.tune(note: :e, octave: 1)
 
         expect(string.pluck(fret: 12).value).to eq :e
       end
 
       it "progresses to each note as you walk up the frets" do
         string = GuitarString.new(number: 1)
-        string.tune(:e)
+        string.tune(note: :e, octave: 1)
 
         notes = (0..11).map do |fret|
           string.pluck(fret: fret).value

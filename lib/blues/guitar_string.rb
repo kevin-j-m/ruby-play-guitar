@@ -9,14 +9,20 @@ module Blues
       @number = number
       @gauge_set = gauge_set
       @tuning_note = nil
+      @tuning_octave = nil
     end
 
-    def tune(note)
+    def tune(note:, octave:)
       @tuning_note = note
+      @tuning_octave = octave
     end
 
     def pluck(fret:)
-      Note.new(root: @tuning_note, offset: fret)
+      Note.new(
+        root_note: @tuning_note,
+        root_octave: @tuning_octave,
+        offset: fret,
+      )
     end
 
     def heavy?

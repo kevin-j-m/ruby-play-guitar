@@ -7,7 +7,8 @@ end
 
 guitar = Blues::Guitar.new
 guitar.restring(gauge_set: :srv)
-guitar.tune(:down_half_step)
+# guitar.tune(:down_half_step)
+guitar.tune(:standard)
 
 shape_1 = [
   guitar.pick(string: 6, fret: 5),

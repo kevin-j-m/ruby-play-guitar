@@ -2,17 +2,22 @@
 
 module Blues
   class Note
-    def initialize(root:, offset:)
-      @note_progression = notes.rotate(notes.index(root)).cycle
+    def initialize(root_note:, root_octave:, offset:)
+      @note_cycle = notes.rotate(notes.index(root_note)).cycle
+      @root_octave = root_octave
       @offset = offset
     end
 
     def value
-      @value ||= @note_progression.take(@offset + 1).last
+      @value ||= note_progression.last
+    end
+
+    def octave
+      @root_octave + octaves_progressed
     end
 
     def to_s
-      "#{value_string[0].upcase}#{'b' if flat?}"
+      "#{value_string[0].upcase}#{'b' if flat?}#{octave}"
     end
 
     private
@@ -25,8 +30,30 @@ module Blues
       @value_string ||= value.to_s
     end
 
+    def octaves_progressed
+      cs_passed = note_progression.count(:c)
+
+      if c_root?
+        cs_passed -= 1
+      end
+
+      cs_passed
+    end
+
+    def c_root?
+      @note_cycle.first == :c
+    end
+
+    def note_progression
+      @note_cycle.take(@offset + 1)
+    end
+
     def notes
       [
+        :a_flat,
+        :a,
+        :b_flat,
+        :b,
         :c,
         :d_flat,
         :d,
@@ -35,10 +62,6 @@ module Blues
         :f,
         :g_flat,
         :g,
-        :a_flat,
-        :a,
-        :b_flat,
-        :b,
       ]
     end
   end

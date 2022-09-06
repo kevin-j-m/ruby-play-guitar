@@ -39,21 +39,21 @@ module Blues
     private
 
     def standard_tuning
-      @strings[5].tune(:e)
-      @strings[4].tune(:a)
-      @strings[3].tune(:d)
-      @strings[2].tune(:g)
-      @strings[1].tune(:b)
-      @strings[0].tune(:e)
+      @strings[5].tune(note: :e, octave: 2)
+      @strings[4].tune(note: :a, octave: 2)
+      @strings[3].tune(note: :d, octave: 3)
+      @strings[2].tune(note: :g, octave: 3)
+      @strings[1].tune(note: :b, octave: 3)
+      @strings[0].tune(note: :e, octave: 4)
     end
 
     def down_half_step_tuning
-      @strings[5].tune(:e_flat)
-      @strings[4].tune(:a_flat)
-      @strings[3].tune(:d_flat)
-      @strings[2].tune(:g_flat)
-      @strings[1].tune(:b_flat)
-      @strings[0].tune(:e_flat)
+      @strings[5].tune(note: :e_flat, octave: 2)
+      @strings[4].tune(note: :a_flat, octave: 2)
+      @strings[3].tune(note: :d_flat, octave: 3)
+      @strings[2].tune(note: :g_flat, octave: 3)
+      @strings[1].tune(note: :b_flat, octave: 3)
+      @strings[0].tune(note: :e_flat, octave: 4)
     end
   end
 end
