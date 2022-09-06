@@ -31,12 +31,12 @@ module Blues
     private
 
     def standard_tuning
-      @strings[0].tune(:e)
-      @strings[1].tune(:a)
-      @strings[2].tune(:d)
-      @strings[3].tune(:g)
-      @strings[4].tune(:b)
       @strings[5].tune(:e)
+      @strings[4].tune(:a)
+      @strings[3].tune(:d)
+      @strings[2].tune(:g)
+      @strings[1].tune(:b)
+      @strings[0].tune(:e)
     end
   end
 end

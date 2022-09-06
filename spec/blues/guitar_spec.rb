@@ -9,7 +9,7 @@ module Blues
         expect { guitar.tune }
           .to change { guitar.strings.map(&:tuning_note) }
           .from([nil, nil, nil, nil, nil, nil])
-          .to([:e, :a, :d, :g, :b, :e])
+          .to([:e, :b, :g, :d, :a, :e])
       end
 
       it "tunes the strings to the tuning specified when calling the method" do
@@ -18,21 +18,19 @@ module Blues
         expect { guitar.tune(:standard) }
           .to change { guitar.strings.map(&:tuning_note) }
           .from([nil, nil, nil, nil, nil, nil])
-          .to([:e, :a, :d, :g, :b, :e])
+          .to([:e, :b, :g, :d, :a, :e])
       end
     end
 
     describe "#pick" do
-      it "" do
+      it "provides information about what is played" do
         guitar = Guitar.new(tuning: :standard)
         guitar.tune
 
         expect(guitar.pick(string: 1, fret: 12)).to have_attributes(
-          {
-            string_number: 1,
-            fret_number: 12,
-            note: :e,
-          }
+          string_number: 1,
+          fret_number: 12,
+          note: :e,
         )
       end
 
@@ -44,14 +42,7 @@ module Blues
           guitar.pick(string: string, fret: 0).note
         end
 
-        expect(notes).to eq [
-          :e,
-          :a,
-          :d,
-          :g,
-          :b,
-          :e,
-        ]
+        expect(notes).to eq [:e, :b, :g, :d, :a, :e]
       end
     end
   end
