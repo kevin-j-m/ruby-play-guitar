@@ -49,6 +49,7 @@ GEM
     standard (1.16.1)
       rubocop (= 1.35.1)
       rubocop-performance (= 1.14.3)
+    timecop (0.9.5)
     unicode-display_width (2.2.0)
     zeitwerk (2.6.0)
 
@@ -60,6 +61,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rspec (~> 3.0)
   standard
+  timecop
 
 BUNDLED WITH
    2.3.21

@@ -12,3 +12,7 @@ gem "rspec", "~> 3.0"
 group :development, :test do
   gem "standard"
 end
+
+group :test do
+  gem "timecop"
+end
