@@ -45,5 +45,17 @@ module Blues
         expect(notes).to eq [:e, :b, :g, :d, :a, :e]
       end
     end
+
+    describe "#restring" do
+      it "changes the strings with the gauge specified" do
+        guitar = Guitar.new(tuning: :standard)
+        guitar.tune
+
+        expect { guitar.restring(gauge_set: :srv) }
+          .to change { guitar.strings.map(&:gauge_number) }
+          .from([9, 11, 16, 24, 32, 42])
+          .to([13, 15, 19, 28, 38, 58])
+      end
+    end
   end
 end

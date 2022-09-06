@@ -6,7 +6,7 @@ module Blues
 
     def initialize(tuning: :standard)
       @tuning = tuning
-      @strings = Array.new(6) { |i| Guitar::String.new(number: i + 1) }
+      @strings = Array.new(6) { |i| GuitarString.new(number: i + 1) }
     end
 
     def pick(string:, fret:)
@@ -26,6 +26,15 @@ module Blues
       end
 
       tuning
+    end
+
+    def restring(gauge_set:)
+      @strings = Array.new(6) do |i|
+        GuitarString.new(
+          number: i + 1,
+          gauge_set: gauge_set,
+        )
+      end
     end
 
     private
