@@ -28,7 +28,7 @@ module Blues
         expect(guitar.pick(string: 1, fret: 12)).to have_attributes(
           string_number: 1,
           fret_number: 12,
-          note: :e,
+          note: an_object_having_attributes(value: :e),
         )
       end
 
@@ -37,7 +37,7 @@ module Blues
         guitar.tune
 
         notes = (1..6).map do |string|
-          guitar.pick(string: string, fret: 0).note
+          guitar.pick(string: string, fret: 0).note.value
         end
 
         expect(notes).to eq [:e, :b, :g, :d, :a, :e]

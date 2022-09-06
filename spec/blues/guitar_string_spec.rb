@@ -18,14 +18,14 @@ module Blues
         string = GuitarString.new(number: 1)
         string.tune(:e)
 
-        expect(string.pluck(fret: 0)).to eq :e
+        expect(string.pluck(fret: 0).value).to eq :e
       end
 
       it "plays the string note on the 12th fret" do
         string = GuitarString.new(number: 1)
         string.tune(:e)
 
-        expect(string.pluck(fret: 12)).to eq :e
+        expect(string.pluck(fret: 12).value).to eq :e
       end
 
       it "progresses to each note as you walk up the frets" do
@@ -33,7 +33,7 @@ module Blues
         string.tune(:e)
 
         notes = (0..11).map do |fret|
-          string.pluck(fret: fret)
+          string.pluck(fret: fret).value
         end
 
         expect(notes).to eq [

@@ -2,7 +2,7 @@
 require_relative "blues"
 
 def format_measure(measure)
-  measure.map { |sound| sound.note.to_s.ljust(6, " ") }.join(" ")
+  measure.map { |sound| sound.note.to_s.ljust(2, " ") }.join(" ")
 end
 
 guitar = Blues::Guitar.new

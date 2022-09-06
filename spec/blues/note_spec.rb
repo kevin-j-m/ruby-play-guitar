@@ -36,5 +36,19 @@ module Blues
         ]
       end
     end
+
+    describe "#to_s" do
+      it "capitalizes the note" do
+        note = Note.new(root: :c, offset: 0)
+
+        expect(note.to_s).to eq "C"
+      end
+
+      it "uses a 'b' to denote a flat" do
+        note = Note.new(root: :c, offset: 1)
+
+        expect(note.to_s).to eq "Db"
+      end
+    end
   end
 end

@@ -17,7 +17,6 @@ module Blues
 
     def pluck(fret:)
       Note.new(root: @tuning_note, offset: fret)
-        .value
     end
 
     def heavy?

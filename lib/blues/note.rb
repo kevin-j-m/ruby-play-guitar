@@ -8,11 +8,22 @@ module Blues
     end
 
     def value
-      @note_progression.take(@offset + 1).last
-      # @note_progression.find.with_index { |_, i| i == @offset }
+      @value ||= @note_progression.take(@offset + 1).last
+    end
+
+    def to_s
+      "#{value_string[0].upcase}#{'b' if flat?}"
     end
 
     private
+
+    def flat?
+      value_string.end_with?("_flat")
+    end
+
+    def value_string
+      @value_string ||= value.to_s
+    end
 
     def notes
       [
