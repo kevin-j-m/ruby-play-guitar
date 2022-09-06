@@ -2,10 +2,12 @@
 
 module Blues
   class Guitar
+    VALID_TUNINGS = [:down_half_step, :standard].freeze
+
     attr_reader :strings
 
-    def initialize(tuning: :standard)
-      @tuning = tuning
+    def initialize
+      @tuning = nil
       @strings = Array.new(6) { |i| GuitarString.new(number: i + 1) }
     end
 
@@ -16,16 +18,13 @@ module Blues
       )
     end
 
-    def tune(tuning = nil)
-      if tuning
-        @tuning = tuning
-      end
+    def tune(tuning = :standard)
+      raise "unknown tuning" unless VALID_TUNINGS.include?(tuning)
+      @tuning = tuning
 
-      if @tuning == :standard
-        standard_tuning
-      end
+      send("#{@tuning}_tuning")
 
-      tuning
+      @tuning
     end
 
     def restring(gauge_set:)
@@ -46,6 +45,15 @@ module Blues
       @strings[2].tune(:g)
       @strings[1].tune(:b)
       @strings[0].tune(:e)
+    end
+
+    def down_half_step_tuning
+      @strings[5].tune(:e_flat)
+      @strings[4].tune(:a_flat)
+      @strings[3].tune(:d_flat)
+      @strings[2].tune(:g_flat)
+      @strings[1].tune(:b_flat)
+      @strings[0].tune(:e_flat)
     end
   end
 end

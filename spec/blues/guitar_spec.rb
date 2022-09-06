@@ -3,28 +3,26 @@
 module Blues
   RSpec.describe Guitar do
     describe "#tune" do
-      it "tunes the strings to the tuning specified at instantiation" do
-        guitar = Guitar.new(tuning: :standard)
+      it "tunes the strings to the tuning specified when calling the method" do
+        guitar = Guitar.new
 
-        expect { guitar.tune }
+        expect { guitar.tune(:down_half_step) }
           .to change { guitar.strings.map(&:tuning_note) }
           .from([nil, nil, nil, nil, nil, nil])
-          .to([:e, :b, :g, :d, :a, :e])
+          .to([:e_flat, :b_flat, :g_flat, :d_flat, :a_flat, :e_flat])
       end
 
-      it "tunes the strings to the tuning specified when calling the method" do
-        guitar = Guitar.new(tuning: nil)
+      it "raises an exception when tuning to an unknown tuning" do
+        guitar = Guitar.new
 
-        expect { guitar.tune(:standard) }
-          .to change { guitar.strings.map(&:tuning_note) }
-          .from([nil, nil, nil, nil, nil, nil])
-          .to([:e, :b, :g, :d, :a, :e])
+        expect { guitar.tune(:weird_open_tuning) }
+          .to raise_error "unknown tuning"
       end
     end
 
     describe "#pick" do
       it "provides information about what is played" do
-        guitar = Guitar.new(tuning: :standard)
+        guitar = Guitar.new
         guitar.tune
 
         expect(guitar.pick(string: 1, fret: 12)).to have_attributes(
@@ -35,7 +33,7 @@ module Blues
       end
 
       it "plays notes on every string" do
-        guitar = Guitar.new(tuning: :standard)
+        guitar = Guitar.new
         guitar.tune
 
         notes = (1..6).map do |string|
@@ -48,8 +46,7 @@ module Blues
 
     describe "#restring" do
       it "changes the strings with the gauge specified" do
-        guitar = Guitar.new(tuning: :standard)
-        guitar.tune
+        guitar = Guitar.new
 
         expect { guitar.restring(gauge_set: :srv) }
           .to change { guitar.strings.map(&:gauge_number) }
