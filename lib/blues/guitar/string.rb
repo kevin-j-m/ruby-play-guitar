@@ -3,9 +3,11 @@
 module Blues
   class Guitar
     class String
-      attr_reader :tuning_note
+      attr_reader :number,
+        :tuning_note
 
-      def initialize
+      def initialize(number:)
+        @number = number
         @tuning_note = nil
       end
 

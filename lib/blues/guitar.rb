@@ -6,15 +6,14 @@ module Blues
 
     def initialize(tuning: :standard)
       @tuning = tuning
-      @strings = Array.new(6) { Guitar::String.new }
+      @strings = Array.new(6) { |i| Guitar::String.new(number: i + 1) }
     end
 
     def pick(string:, fret:)
-      {
-        string: string,
+      FingerPosition.new(
+        string: @strings[string - 1],
         fret: fret,
-        note: @strings[string - 1].pluck(fret: fret),
-      }
+      )
     end
 
     def tune(tuning = nil)
