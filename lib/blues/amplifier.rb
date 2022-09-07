@@ -39,9 +39,31 @@ module Blues
     end
 
     def power_amp_stage(sound)
-      return "" unless audible?
+      "#{sound.to_s if audible?}#{speaker_level}[#{volume}]"
+    end
 
-      "#{sound.to_s}🔈[#{volume}]"
+    def speaker_level
+      if !audible?
+        "🔇"
+      elsif low_volume?
+        "🔈"
+      elsif mid_volume?
+        "🔉"
+      elsif high_volume?
+        "🔊"
+      end
+    end
+
+    def low_volume?
+      audible? && volume < 4
+    end
+
+    def mid_volume?
+      volume >= 4 && volume < 8
+    end
+
+    def high_volume?
+      volume >= 8
     end
 
     def audible?
