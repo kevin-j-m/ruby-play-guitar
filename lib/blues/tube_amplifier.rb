@@ -2,30 +2,31 @@
 
 module Blues
   class TubeAmplifier < Amplifier
-    SECONDS_TO_WARM_UP = 10.freeze
-
     def turn_on
-      if @time_turned_on.nil?
-        @time_turned_on = Time.now
+      if @warm_up.nil?
+        @warm_up = TubeWarmUp.new
       end
 
       super
     end
 
     def turn_off
-      @time_turned_on = nil
+      @warm_up = nil
 
       super
     end
 
     def warm_up_complete?
-      seconds_warmed_up >= SECONDS_TO_WARM_UP
+      return false unless @warm_up
+
+      @warm_up.complete?
     end
 
     def volume
       return @volume if warm_up_complete?
+      return 0 unless @warm_up
 
-      (@volume * warmed_volume_scale).floor
+      (@volume * @warm_up.volume_scale).floor
     end
 
     def pre_amp_tone
@@ -44,20 +45,6 @@ module Blues
 
     def power_amp_weight
       :heavy
-    end
-
-    private
-
-    def warmed_volume_scale
-      return 1 if warm_up_complete?
-
-      seconds_warmed_up / SECONDS_TO_WARM_UP
-    end
-
-    def seconds_warmed_up
-      return 0 unless @time_turned_on
-
-      Time.now - @time_turned_on
     end
   end
 end

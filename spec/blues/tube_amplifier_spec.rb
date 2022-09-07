@@ -13,29 +13,26 @@ module Blues
           .to(true)
       end
 
-      it "stores the time the amplifier was turned on" do
+      it "starts the warm up" do
         amp = TubeAmplifier.new
 
         Timecop.freeze do
           expect { amp.turn_on }
-            .to change { amp.instance_variable_get("@time_turned_on") }
+            .to change { amp.instance_variable_get("@warm_up") }
             .from(nil)
-            .to(Time.now)
         end
       end
 
-      it "does not update the time turned on when it's already on" do
+      it "does not warm up again when it's already on" do
         amp = TubeAmplifier.new
 
         Timecop.freeze do
           amp.turn_on
-          original_time_turned_on = Time.now
+          warm_up = amp.instance_variable_get("@warm_up")
 
-          Timecop.freeze(Time.now + 500) do
-            expect { amp.turn_on }
-              .not_to change { amp.instance_variable_get("@time_turned_on") }
-              .from(original_time_turned_on)
-          end
+          expect { amp.turn_on }
+            .not_to change { amp.instance_variable_get("@warm_up") }
+            .from(warm_up)
         end
       end
     end
@@ -51,13 +48,13 @@ module Blues
           .to(false)
       end
 
-      it "resets the time turned on to nil" do
+      it "resets the warm up to nil" do
         amp = TubeAmplifier.new
         amp.turn_on
 
         Timecop.freeze do
           expect { amp.turn_off }
-            .to change { amp.instance_variable_get("@time_turned_on") }
+            .to change { amp.instance_variable_get("@warm_up") }
             .to(nil)
         end
       end
@@ -242,7 +239,7 @@ module Blues
       if seconds
         Timecop.travel(Time.now + seconds)
       else
-        Timecop.travel(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP + 2))
+        Timecop.travel(Time.now + (TubeWarmUp::SECONDS_TO_WARM_UP + 2))
       end
     end
   end
