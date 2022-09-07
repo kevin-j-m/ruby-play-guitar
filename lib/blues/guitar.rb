@@ -2,7 +2,15 @@
 
 module Blues
   class Guitar
-    VALID_TUNINGS = [:down_half_step, :standard].freeze
+    VALID_TUNINGS = [
+      :all_fifths,
+      :all_fourths,
+      :down_half_step,
+      :drop_d,
+      :modal_c,
+      :open_a,
+      :standard,
+    ].freeze
 
     attr_reader :strings
 
@@ -26,24 +34,9 @@ module Blues
     end
 
     def tune(tuning = :standard)
-      case tuning
-      when :standard
-        standard_tuning
-      when :down_half_step
-        down_half_step_tuning
-      when :drop_d
-        drop_d_tuning
-      when :open_a
-        open_a_tuning
-      when :modal_c
-        modal_c_tuning
-      when :all_fourths
-        all_fourths_tuning
-      when :all_fifths
-        all_fifths_tuning
-      else
-        raise "unknown tuning"
-      end
+      raise "unknown tuning" unless VALID_TUNINGS.include?(tuning)
+
+      send("#{tuning}_tuning")
 
       @tuning = tuning
     end
