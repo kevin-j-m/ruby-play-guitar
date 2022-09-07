@@ -26,12 +26,26 @@ module Blues
     end
 
     def tune(tuning = :standard)
-      raise "unknown tuning" unless VALID_TUNINGS.include?(tuning)
+      case tuning
+      when :standard
+        standard_tuning
+      when :down_half_step
+        down_half_step_tuning
+      when :drop_d
+        drop_d_tuning
+      when :open_a
+        open_a_tuning
+      when :modal_c
+        modal_c_tuning
+      when :all_fourths
+        all_fourths_tuning
+      when :all_fifths
+        all_fifths_tuning
+      else
+        raise "unknown tuning"
+      end
+
       @tuning = tuning
-
-      send("#{@tuning}_tuning")
-
-      @tuning
     end
 
     def restring(gauge_set:)
@@ -62,5 +76,11 @@ module Blues
       @strings[1].tune(note: :b_flat, octave: 3)
       @strings[0].tune(note: :e_flat, octave: 4)
     end
+
+    def drop_d_tuning = nil
+    def open_a_tuning = nil
+    def modal_c_tuning = nil
+    def all_fourths_tuning = nil
+    def all_fifths_tuning = nil
   end
 end
