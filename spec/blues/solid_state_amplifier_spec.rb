@@ -36,5 +36,29 @@ module Blues
         expect(amp.pre_amp_tone).to eq "🫙"
       end
     end
+
+    describe "#pre_amp_weight" do
+      it "is light" do
+        amp = SolidStateAmplifier.new
+
+        expect(amp.pre_amp_weight).to eq :light
+      end
+    end
+
+    describe "#power_amp_weight" do
+      it "is light" do
+        amp = SolidStateAmplifier.new
+
+        expect(amp.power_amp_weight).to eq :light
+      end
+    end
+
+    describe "#weight" do
+      it "is light" do
+        amp = SolidStateAmplifier.new
+
+        expect(amp.weight).to eq :light
+      end
+    end
   end
 end

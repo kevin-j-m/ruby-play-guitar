@@ -38,6 +38,14 @@ module Blues
       end
     end
 
+    def pre_amp_weight
+      :heavy
+    end
+
+    def power_amp_weight
+      :heavy
+    end
+
     private
 
     def warmed_volume_scale

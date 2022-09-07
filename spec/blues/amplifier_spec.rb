@@ -111,5 +111,29 @@ module Blues
         expect(amp.pre_amp_tone).to eq " "
       end
     end
+
+    describe "#pre_amp_weight" do
+      it "is average" do
+        amp = Amplifier.new
+
+        expect(amp.pre_amp_weight).to eq :average
+      end
+    end
+
+    describe "#power_amp_weight" do
+      it "is average" do
+        amp = Amplifier.new
+
+        expect(amp.power_amp_weight).to eq :average
+      end
+    end
+
+    describe "#weight" do
+      it "is average" do
+        amp = Amplifier.new
+
+        expect(amp.weight).to eq :average
+      end
+    end
   end
 end

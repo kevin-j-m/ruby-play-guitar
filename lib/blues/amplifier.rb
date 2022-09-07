@@ -36,6 +36,24 @@ module Blues
       " "
     end
 
+    def pre_amp_weight
+      :average
+    end
+
+    def power_amp_weight
+      :average
+    end
+
+    def weight
+      parts = [pre_amp_weight, power_amp_weight].to_set
+
+      if parts.size == 1
+        parts.first
+      else
+        :average
+      end
+    end
+
     private
 
     def pre_amp_stage(sound)

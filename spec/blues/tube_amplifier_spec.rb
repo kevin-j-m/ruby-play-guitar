@@ -214,6 +214,30 @@ module Blues
       end
     end
 
+    describe "#pre_amp_weight" do
+      it "is heavy" do
+        amp = TubeAmplifier.new
+
+        expect(amp.pre_amp_weight).to eq :heavy
+      end
+    end
+
+    describe "#power_amp_weight" do
+      it "is heavy" do
+        amp = TubeAmplifier.new
+
+        expect(amp.power_amp_weight).to eq :heavy
+      end
+    end
+
+    describe "#weight" do
+      it "is heavy" do
+        amp = TubeAmplifier.new
+
+        expect(amp.weight).to eq :heavy
+      end
+    end
+
     def warm_up(seconds: nil)
       if seconds
         Timecop.travel(Time.now + seconds)
