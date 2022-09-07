@@ -19,33 +19,11 @@ module Blues
     def tune(tuning = :standard)
       raise "unknown tuning" unless VALID_TUNINGS.include?(tuning)
 
-      send("#{tuning}_tuning")
+      class_name = "#{tuning}_tuning".split("_").map(&:capitalize).join.prepend("Blues::")
+
+      Object.const_get(class_name).pitches.each_with_index do |pitch, index|
+        @guitar.strings[index].tune(**pitch)
+      end
     end
-
-    private
-
-    def standard_tuning
-      @guitar.strings[5].tune(note: :e, octave: 2)
-      @guitar.strings[4].tune(note: :a, octave: 2)
-      @guitar.strings[3].tune(note: :d, octave: 3)
-      @guitar.strings[2].tune(note: :g, octave: 3)
-      @guitar.strings[1].tune(note: :b, octave: 3)
-      @guitar.strings[0].tune(note: :e, octave: 4)
-    end
-
-    def down_half_step_tuning
-      @guitar.strings[5].tune(note: :e_flat, octave: 2)
-      @guitar.strings[4].tune(note: :a_flat, octave: 2)
-      @guitar.strings[3].tune(note: :d_flat, octave: 3)
-      @guitar.strings[2].tune(note: :g_flat, octave: 3)
-      @guitar.strings[1].tune(note: :b_flat, octave: 3)
-      @guitar.strings[0].tune(note: :e_flat, octave: 4)
-    end
-
-    def drop_d_tuning = nil
-    def open_a_tuning = nil
-    def modal_c_tuning = nil
-    def all_fourths_tuning = nil
-    def all_fifths_tuning = nil
   end
 end
