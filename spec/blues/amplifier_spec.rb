@@ -104,11 +104,11 @@ module Blues
       end
     end
 
-    describe "#preamp_tone" do
+    describe "#pre_amp_tone" do
       it "has no tone" do
         amp = Amplifier.new
 
-        expect(amp.preamp_tone).to eq " "
+        expect(amp.pre_amp_tone).to eq " "
       end
     end
   end

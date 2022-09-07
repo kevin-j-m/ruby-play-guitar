@@ -182,11 +182,11 @@ module Blues
       end
     end
 
-    describe "#preamp_tone" do
+    describe "#pre_amp_tone" do
       it "has no tone when turned off" do
         amp = TubeAmplifier.new(volume: 10)
 
-        expect(amp.preamp_tone).to eq " "
+        expect(amp.pre_amp_tone).to eq " "
       end
 
       it "has a warm tone at a low volume" do
@@ -194,7 +194,7 @@ module Blues
         amp.turn_on
         warm_up
 
-        expect(amp.preamp_tone).to eq "💡"
+        expect(amp.pre_amp_tone).to eq "💡"
       end
 
       it "has a warm tone at a mid volume" do
@@ -202,7 +202,7 @@ module Blues
         amp.turn_on
         warm_up
 
-        expect(amp.preamp_tone).to eq "💡"
+        expect(amp.pre_amp_tone).to eq "💡"
       end
 
       it "has a hot tone at a high volume" do
@@ -210,7 +210,7 @@ module Blues
         amp.turn_on
         warm_up
 
-        expect(amp.preamp_tone).to eq "🔥"
+        expect(amp.pre_amp_tone).to eq "🔥"
       end
     end
 

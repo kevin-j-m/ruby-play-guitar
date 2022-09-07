@@ -28,7 +28,7 @@ module Blues
       (@volume * warmed_volume_scale).floor
     end
 
-    def preamp_tone
+    def pre_amp_tone
       if low_volume? || mid_volume?
         "💡"
       elsif high_volume?

@@ -2,7 +2,7 @@
 
 module Blues
   class SolidStateAmplifier < Amplifier
-    def preamp_tone
+    def pre_amp_tone
       "🫙"
     end
   end

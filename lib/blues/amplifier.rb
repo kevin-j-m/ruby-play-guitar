@@ -32,7 +32,7 @@ module Blues
       power_amp_stage(modified_sound)
     end
 
-    def preamp_tone
+    def pre_amp_tone
       " "
     end
 
@@ -46,7 +46,7 @@ module Blues
       speaker = "#{speaker_level}[#{volume}]"
 
       if audible?
-        "#{sound.to_s}#{preamp_tone}#{speaker}"
+        "#{sound.to_s}#{pre_amp_tone}#{speaker}"
       else
         speaker
       end

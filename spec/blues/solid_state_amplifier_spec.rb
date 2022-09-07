@@ -28,5 +28,13 @@ module Blues
         expect(amp.amplify(note)).to eq "🔇[0]"
       end
     end
+
+    describe "#pre_amp_tone" do
+      it "has a clean tone" do
+        amp = SolidStateAmplifier.new
+
+        expect(amp.pre_amp_tone).to eq "🫙"
+      end
+    end
   end
 end
