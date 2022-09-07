@@ -2,20 +2,9 @@
 
 module Blues
   class Guitar
-    VALID_TUNINGS = [
-      :all_fifths,
-      :all_fourths,
-      :down_half_step,
-      :drop_d,
-      :modal_c,
-      :open_a,
-      :standard,
-    ].freeze
-
     attr_reader :strings
 
     def initialize(amplifier: nil)
-      @tuning = nil
       @strings = Array.new(6) { |i| GuitarString.new(number: i + 1) }
       @amplifier = amplifier
     end
@@ -34,11 +23,7 @@ module Blues
     end
 
     def tune(tuning = :standard)
-      raise "unknown tuning" unless VALID_TUNINGS.include?(tuning)
-
-      send("#{tuning}_tuning")
-
-      @tuning = tuning
+      Tuner.new(self).tune(tuning)
     end
 
     def restring(gauge_set:)
@@ -49,31 +34,5 @@ module Blues
         )
       end
     end
-
-    private
-
-    def standard_tuning
-      @strings[5].tune(note: :e, octave: 2)
-      @strings[4].tune(note: :a, octave: 2)
-      @strings[3].tune(note: :d, octave: 3)
-      @strings[2].tune(note: :g, octave: 3)
-      @strings[1].tune(note: :b, octave: 3)
-      @strings[0].tune(note: :e, octave: 4)
-    end
-
-    def down_half_step_tuning
-      @strings[5].tune(note: :e_flat, octave: 2)
-      @strings[4].tune(note: :a_flat, octave: 2)
-      @strings[3].tune(note: :d_flat, octave: 3)
-      @strings[2].tune(note: :g_flat, octave: 3)
-      @strings[1].tune(note: :b_flat, octave: 3)
-      @strings[0].tune(note: :e_flat, octave: 4)
-    end
-
-    def drop_d_tuning = nil
-    def open_a_tuning = nil
-    def modal_c_tuning = nil
-    def all_fourths_tuning = nil
-    def all_fifths_tuning = nil
   end
 end
