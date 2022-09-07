@@ -363,6 +363,6 @@ with_synth :pluck do
 end
 sleep(0.666)
 with_synth :pluck do
-  play(:E3, release: 1.2)
+  play(:E3, release: 1.334)
 end
-sleep(1.2)
+sleep(1.334)
