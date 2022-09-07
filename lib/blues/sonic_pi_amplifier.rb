@@ -8,11 +8,13 @@ module Blues
       @sounds = []
     end
 
-    def write_to_file(location)
+    def write_to_file(location, looping: false)
       File.open(location, "w") do |file|
+        file.write "loop do\n" if looping
         @sounds.each do |sound|
           file.write sound
         end
+        file.write "end\n" if looping
       end
     end
 

@@ -1,3 +1,4 @@
+loop do
 with_synth :pluck do
   play(:A2, release: 0.6666)
 end
@@ -366,3 +367,4 @@ with_synth :pluck do
   play(:E3, release: 1.334)
 end
 sleep(1.334)
+end
