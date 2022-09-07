@@ -6,11 +6,10 @@ module Blues
 
     attr_reader :strings
 
-    def initialize
+    def initialize(amplifier: nil)
       @tuning = nil
       @strings = Array.new(6) { |i| GuitarString.new(number: i + 1) }
-      @amplifier = Amplifier.new(volume: 5)
-      @amplifier.turn_on
+      @amplifier = amplifier
     end
 
     def pick(string:, fret:)
@@ -19,7 +18,11 @@ module Blues
         fret: fret,
       )
 
-      @amplifier.amplify(positioning.note)
+      if @amplifier
+        @amplifier.amplify(positioning.note)
+      else
+        positioning
+      end
     end
 
     def tune(tuning = :standard)

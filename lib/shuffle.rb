@@ -1,70 +1,78 @@
 # run with ruby lib/shuffle.rb
 require_relative "blues"
 
-def format_measure(measure, amplifier)
-  measure.map { |sound| amplifier.amplify(sound.note).ljust(8, " ") }.join(" ")
-  # measure.map { |sound| sound.note.to_s.ljust(2, " ") }.join(" ")
+def format_measure(measure)
+  measure.map { |sound| sound.ljust(8, " ") }.join(" ")
 end
 
-guitar = Blues::Guitar.new
+amplifier = Blues::TubeAmplifier.new(volume: 10)
+amplifier.turn_on
+
+guitar = Blues::Guitar.new(amplifier: amplifier)
 guitar.restring(gauge_set: :srv)
 guitar.tune(:standard)
 # guitar.tune(:down_half_step)
 
-shape_1 = [
-  guitar.pick(string: 6, fret: 5),
-  guitar.pick(string: 6, fret: 5),
-  guitar.pick(string: 4, fret: 7),
-  guitar.pick(string: 4, fret: 7),
-  guitar.pick(string: 4, fret: 5),
-  guitar.pick(string: 4, fret: 5),
-  guitar.pick(string: 5, fret: 7),
-  guitar.pick(string: 5, fret: 7),
-]
+def play_shape_1(guitar)
+  [
+    guitar.pick(string: 6, fret: 5),
+    guitar.pick(string: 6, fret: 5),
+    guitar.pick(string: 4, fret: 7),
+    guitar.pick(string: 4, fret: 7),
+    guitar.pick(string: 4, fret: 5),
+    guitar.pick(string: 4, fret: 5),
+    guitar.pick(string: 5, fret: 7),
+    guitar.pick(string: 5, fret: 7),
+  ]
+end
 
-shape_2 = [
-  guitar.pick(string: 5, fret: 5),
-  guitar.pick(string: 5, fret: 5),
-  guitar.pick(string: 3, fret: 7),
-  guitar.pick(string: 3, fret: 7),
-  guitar.pick(string: 3, fret: 5),
-  guitar.pick(string: 3, fret: 5),
-  guitar.pick(string: 4, fret: 7),
-  guitar.pick(string: 4, fret: 7),
-]
+def play_shape_2(guitar)
+  [
+    guitar.pick(string: 5, fret: 5),
+    guitar.pick(string: 5, fret: 5),
+    guitar.pick(string: 3, fret: 7),
+    guitar.pick(string: 3, fret: 7),
+    guitar.pick(string: 3, fret: 5),
+    guitar.pick(string: 3, fret: 5),
+    guitar.pick(string: 4, fret: 7),
+    guitar.pick(string: 4, fret: 7),
+  ]
+end
 
-shape_3 = [
-  guitar.pick(string: 5, fret: 7),
-  guitar.pick(string: 5, fret: 7),
-  guitar.pick(string: 3, fret: 9),
-  guitar.pick(string: 3, fret: 9),
-  guitar.pick(string: 3, fret: 7),
-  guitar.pick(string: 3, fret: 7),
-  guitar.pick(string: 4, fret: 9),
-  guitar.pick(string: 4, fret: 9),
-]
+def play_shape_3(guitar)
+  [
+    guitar.pick(string: 5, fret: 7),
+    guitar.pick(string: 5, fret: 7),
+    guitar.pick(string: 3, fret: 9),
+    guitar.pick(string: 3, fret: 9),
+    guitar.pick(string: 3, fret: 7),
+    guitar.pick(string: 3, fret: 7),
+    guitar.pick(string: 4, fret: 9),
+    guitar.pick(string: 4, fret: 9),
+  ]
+end
 
 # TODO: chords?
-shape_4 = [
-  guitar.pick(string: 6, fret: 5),
-  guitar.pick(string: 5, fret: 5),
-  guitar.pick(string: 5, fret: 7),
-]
+def play_shape_4(guitar)
+  [
+    guitar.pick(string: 6, fret: 5),
+    guitar.pick(string: 5, fret: 5),
+    guitar.pick(string: 5, fret: 7),
+  ]
+end
 
-amplifier = Blues::TubeAmplifier.new(volume: 10)
-amplifier.turn_on
-puts format_measure(shape_1, amplifier)
+puts format_measure(play_shape_1(guitar))
 sleep(3)
-puts format_measure(shape_1, amplifier)
+puts format_measure(play_shape_1(guitar))
 sleep(1)
-2.times { puts format_measure(shape_2, amplifier) }
+2.times { puts format_measure(play_shape_2(guitar)) }
 sleep(1)
-2.times { puts format_measure(shape_1, amplifier) }
+2.times { puts format_measure(play_shape_1(guitar)) }
 sleep(1)
-puts format_measure(shape_3, amplifier)
+puts format_measure(play_shape_3(guitar))
 sleep(1)
-puts format_measure(shape_2, amplifier)
+puts format_measure(play_shape_2(guitar))
 sleep(1)
-puts format_measure(shape_1, amplifier)
+puts format_measure(play_shape_1(guitar))
 sleep(1)
-puts format_measure(shape_4, amplifier)
+puts format_measure(play_shape_4(guitar))
