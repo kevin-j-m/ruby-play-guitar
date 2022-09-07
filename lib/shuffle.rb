@@ -140,3 +140,5 @@ pi_guitar.pick(string: 5, fret: 5, duration: 0.666)
 pi_guitar.pick(string: 5, fret: 7, duration: 1.334)
 
 pi.write_to_file("temp.rb", looping: true)
+# pi.write_to_file("#{Dir.home}/.sonic-pi/config/init.rb", looping: true)
+# `open "/Applications/Sonic\ Pi.app"`
