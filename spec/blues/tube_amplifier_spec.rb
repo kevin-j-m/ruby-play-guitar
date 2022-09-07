@@ -85,10 +85,9 @@ module Blues
 
         Timecop.freeze do
           amp.turn_on
+          warm_up
 
-          Timecop.freeze(Time.now + TubeAmplifier::SECONDS_TO_WARM_UP) do
-            expect(amp.warm_up_complete?).to eq true
-          end
+          expect(amp.warm_up_complete?).to eq true
         end
       end
 
@@ -97,10 +96,9 @@ module Blues
 
         Timecop.freeze do
           amp.turn_on
+          warm_up(seconds: 12)
 
-          Timecop.freeze(Time.now + TubeAmplifier::SECONDS_TO_WARM_UP + 2) do
-            expect(amp.warm_up_complete?).to eq true
-          end
+          expect(amp.warm_up_complete?).to eq true
         end
       end
     end
@@ -111,10 +109,9 @@ module Blues
 
         Timecop.freeze do
           amp.turn_on
+          warm_up
 
-          Timecop.freeze(Time.now + TubeAmplifier::SECONDS_TO_WARM_UP + 2) do
-            expect(amp.volume).to eq 10
-          end
+          expect(amp.volume).to eq 10
         end
       end
 
@@ -139,10 +136,9 @@ module Blues
 
         Timecop.freeze do
           amp.turn_on
+          warm_up(seconds: 3)
 
-          Timecop.freeze(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP - 7)) do
-            expect(amp.volume).to eq 3
-          end
+          expect(amp.volume).to eq 3
         end
       end
 
@@ -151,10 +147,9 @@ module Blues
 
         Timecop.freeze do
           amp.turn_on
+          warm_up(seconds: 9)
 
-          Timecop.freeze(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP - 1)) do
-            expect(amp.volume).to eq 8
-          end
+          expect(amp.volume).to eq 8
         end
       end
     end
@@ -167,10 +162,9 @@ module Blues
 
         Timecop.freeze do
           amp.turn_on
+          warm_up
 
-          Timecop.freeze(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP + 2)) do
-            expect(amp.amplify(note)).to eq "C1🔥🔊[10]"
-          end
+          expect(amp.amplify(note)).to eq "C1🔥🔊[10]"
         end
       end
 
@@ -181,11 +175,50 @@ module Blues
 
         Timecop.freeze do
           amp.turn_on
+          warm_up(seconds: 3)
 
-          Timecop.freeze(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP - 7)) do
-            expect(amp.amplify(note)).to eq "C1💡🔈[3]"
-          end
+          expect(amp.amplify(note)).to eq "C1💡🔈[3]"
         end
+      end
+    end
+
+    describe "#preamp_tone" do
+      it "has no tone when turned off" do
+        amp = TubeAmplifier.new(volume: 10)
+
+        expect(amp.preamp_tone).to eq " "
+      end
+
+      it "has a warm tone at a low volume" do
+        amp = TubeAmplifier.new(volume: 1)
+        amp.turn_on
+        warm_up
+
+        expect(amp.preamp_tone).to eq "💡"
+      end
+
+      it "has a warm tone at a mid volume" do
+        amp = TubeAmplifier.new(volume: 6)
+        amp.turn_on
+        warm_up
+
+        expect(amp.preamp_tone).to eq "💡"
+      end
+
+      it "has a hot tone at a high volume" do
+        amp = TubeAmplifier.new(volume: 8)
+        amp.turn_on
+        warm_up
+
+        expect(amp.preamp_tone).to eq "🔥"
+      end
+    end
+
+    def warm_up(seconds: nil)
+      if seconds
+        Timecop.travel(Time.now + seconds)
+      else
+        Timecop.travel(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP + 2))
       end
     end
   end

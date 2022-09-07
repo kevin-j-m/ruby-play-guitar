@@ -103,5 +103,13 @@ module Blues
         expect(amp.amplify(note)).to eq "🔇[0]"
       end
     end
+
+    describe "#preamp_tone" do
+      it "has no tone" do
+        amp = Amplifier.new
+
+        expect(amp.preamp_tone).to eq " "
+      end
+    end
   end
 end

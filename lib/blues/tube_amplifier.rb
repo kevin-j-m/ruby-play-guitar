@@ -28,6 +28,16 @@ module Blues
       (@volume * warmed_volume_scale).floor
     end
 
+    def preamp_tone
+      if low_volume? || mid_volume?
+        "💡"
+      elsif high_volume?
+        "🔥"
+      else
+        " "
+      end
+    end
+
     private
 
     def warmed_volume_scale
@@ -40,16 +50,6 @@ module Blues
       return 0 unless @time_turned_on
 
       Time.now - @time_turned_on
-    end
-
-    def preamp_tone
-      if low_volume? || mid_volume?
-        "💡"
-      elsif high_volume?
-        "🔥"
-      else
-        " "
-      end
     end
   end
 end

@@ -32,14 +32,14 @@ module Blues
       power_amp_stage(modified_sound)
     end
 
+    def preamp_tone
+      " "
+    end
+
     private
 
     def pre_amp_stage(sound)
       sound
-    end
-
-    def preamp_tone
-      " "
     end
 
     def power_amp_stage(sound)
