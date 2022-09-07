@@ -169,7 +169,7 @@ module Blues
           amp.turn_on
 
           Timecop.freeze(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP + 2)) do
-            expect(amp.amplify(note)).to eq "C1🔊[10]"
+            expect(amp.amplify(note)).to eq "C1 🔊[10]"
           end
         end
       end
@@ -183,7 +183,7 @@ module Blues
           amp.turn_on
 
           Timecop.freeze(Time.now + (TubeAmplifier::SECONDS_TO_WARM_UP - 7)) do
-            expect(amp.amplify(note)).to eq "C1🔈[3]"
+            expect(amp.amplify(note)).to eq "C1 🔈[3]"
           end
         end
       end

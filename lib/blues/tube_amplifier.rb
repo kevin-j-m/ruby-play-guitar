@@ -22,7 +22,6 @@ module Blues
       seconds_warmed_up >= SECONDS_TO_WARM_UP
     end
 
-    # TODO: should this instead happen in the pre_amp_stage?
     def volume
       return @volume if warm_up_complete?
 

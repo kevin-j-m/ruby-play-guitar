@@ -84,7 +84,7 @@ module Blues
 
         note = Note.new(root_note: :c, root_octave: 1, offset: 0)
 
-        expect(amp.amplify(note)).to eq "C1🔈[3]"
+        expect(amp.amplify(note)).to eq "C1 🔈[3]"
       end
 
       it "produces no sound when the amplifier isn't turned on" do
