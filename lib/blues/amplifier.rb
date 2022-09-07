@@ -39,7 +39,7 @@ module Blues
     end
 
     def power_amp_stage(sound)
-      return unless audible?
+      return "" unless audible?
 
       "#{sound.to_s}🔈[#{volume}]"
     end

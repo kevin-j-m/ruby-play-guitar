@@ -51,12 +51,19 @@ shape_4 = [
   guitar.pick(string: 5, fret: 7),
 ]
 
-amplifier = Blues::Amplifier.new(volume: 5)
+amplifier = Blues::TubeAmplifier.new(volume: 5)
 amplifier.turn_on
+sleep(5)
 2.times { puts format_measure(shape_1, amplifier) }
+sleep(1)
 2.times { puts format_measure(shape_2, amplifier) }
+sleep(1)
 2.times { puts format_measure(shape_1, amplifier) }
+sleep(1)
 puts format_measure(shape_3, amplifier)
+sleep(1)
 puts format_measure(shape_2, amplifier)
+sleep(1)
 puts format_measure(shape_1, amplifier)
+sleep(1)
 puts format_measure(shape_4, amplifier)
