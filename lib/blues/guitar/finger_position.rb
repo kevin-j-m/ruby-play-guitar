@@ -3,13 +3,14 @@
 module Blues
   class Guitar
     class FingerPosition
-      def initialize(string:, fret:)
+      def initialize(string:, fret:, duration: 0.25)
         @string = string
         @fret = fret
+        @duration = duration
       end
 
       def note
-        @string.pluck(fret: @fret)
+        @string.pluck(fret: @fret, duration: @duration)
       end
 
       def string_number

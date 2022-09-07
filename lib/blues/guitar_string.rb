@@ -17,11 +17,12 @@ module Blues
       @tuning_octave = octave
     end
 
-    def pluck(fret:)
+    def pluck(fret:, duration: 0.25)
       Note.new(
         root_note: @tuning_note,
         root_octave: @tuning_octave,
         offset: fret,
+        duration: duration,
       )
     end
 

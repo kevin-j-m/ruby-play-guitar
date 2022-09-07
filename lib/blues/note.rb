@@ -2,10 +2,13 @@
 
 module Blues
   class Note
-    def initialize(root_note:, root_octave:, offset:)
+    attr_reader :duration
+
+    def initialize(root_note:, root_octave:, offset:, duration: 0.25)
       @note_cycle = notes.rotate(notes.index(root_note)).cycle
       @root_octave = root_octave
       @offset = offset
+      @duration = duration
     end
 
     def value

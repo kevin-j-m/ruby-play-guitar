@@ -9,10 +9,11 @@ module Blues
       @amplifier = amplifier
     end
 
-    def pick(string:, fret:)
+    def pick(string:, fret:, duration: 0.25)
       positioning = FingerPosition.new(
         string: @strings[string - 1],
         fret: fret,
+        duration: duration,
       )
 
       if @amplifier
