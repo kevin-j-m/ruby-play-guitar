@@ -2,16 +2,6 @@
 
 module Blues
   class SolidStateAmplifier < Amplifier
-    def pre_amp_tone
-      "🫙"
-    end
-
-    def pre_amp_weight
-      :light
-    end
-
-    def power_amp_weight
-      :light
-    end
+    include SolidStatePreAmp, SolidStatePowerAmp
   end
 end

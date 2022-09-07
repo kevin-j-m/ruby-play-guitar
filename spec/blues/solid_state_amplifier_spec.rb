@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Blues
-  RSpec.describe TubeAmplifier do
+  RSpec.describe SolidStateAmplifier do
     describe "#amplify" do
       it "provides the sound value at the volume specified" do
         amp = SolidStateAmplifier.new(volume: 3)
