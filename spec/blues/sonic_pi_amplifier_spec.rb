@@ -9,7 +9,7 @@ module Blues
 
         note = Note.new(root_note: :c, root_octave: 1, offset: 0)
 
-        expect(amp.amplify(note)).to eq "with_synth :pluck do\n  play(:C1, release: 1)\nend\nsleep(1)\n"
+        expect(amp.amplify(note)).to eq "with_synth :pluck do\n  play(:C1, release: 0.25)\nend\nsleep(0.25)\n"
       end
 
       it "has no output when the amp isn't turned on" do

@@ -49,7 +49,7 @@ module Blues
         guitar = Guitar.new(amplifier: amp)
         guitar.tune
 
-        expect(guitar.pick(string: 1, fret: 12)).to eq "🔇[5]"
+        expect(guitar.pick(string: 1, fret: 12)).to eq "🔇🔇[5]"
       end
 
       it "has no output for a practice amp" do

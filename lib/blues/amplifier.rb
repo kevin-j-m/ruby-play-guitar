@@ -66,7 +66,7 @@ module Blues
       if audible?
         "#{sound.to_s}#{pre_amp_tone}#{speaker}"
       else
-        speaker
+        "#{speaker_level}#{speaker}"
       end
     end
 
