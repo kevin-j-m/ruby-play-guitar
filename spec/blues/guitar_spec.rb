@@ -25,22 +25,28 @@ module Blues
         guitar = Guitar.new
         guitar.tune
 
-        expect(guitar.pick(string: 1, fret: 12)).to have_attributes(
-          string_number: 1,
-          fret_number: 12,
-          note: an_object_having_attributes(value: :e),
-        )
+        # expect(guitar.pick(string: 1, fret: 12)).to have_attributes(
+        #   string_number: 1,
+        #   fret_number: 12,
+        #   note: an_object_having_attributes(value: :e),
+        # )
+        expect(guitar.pick(string: 1, fret: 12)).to eq "E5 🔉[5]"
       end
 
       it "plays notes on every string" do
         guitar = Guitar.new
         guitar.tune
 
+        # notes = (1..6).map do |string|
+        #   guitar.pick(string: string, fret: 0).note.value
+        # end
+
+        # expect(notes).to eq [:e, :b, :g, :d, :a, :e]
         notes = (1..6).map do |string|
-          guitar.pick(string: string, fret: 0).note.value
+          guitar.pick(string: string, fret: 0)[0...2]
         end
 
-        expect(notes).to eq [:e, :b, :g, :d, :a, :e]
+        expect(notes).to eq ["E4", "B3", "G3", "D3", "A2", "E2"]
       end
     end
 

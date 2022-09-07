@@ -9,13 +9,17 @@ module Blues
     def initialize
       @tuning = nil
       @strings = Array.new(6) { |i| GuitarString.new(number: i + 1) }
+      @amplifier = Amplifier.new(volume: 5)
+      @amplifier.turn_on
     end
 
     def pick(string:, fret:)
-      FingerPosition.new(
+      positioning = FingerPosition.new(
         string: @strings[string - 1],
         fret: fret,
       )
+
+      @amplifier.amplify(positioning.note)
     end
 
     def tune(tuning = :standard)
