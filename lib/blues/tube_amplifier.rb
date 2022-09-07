@@ -41,5 +41,15 @@ module Blues
 
       Time.now - @time_turned_on
     end
+
+    def preamp_tone
+      if low_volume? || mid_volume?
+        "💡"
+      elsif high_volume?
+        "🔥"
+      else
+        " "
+      end
+    end
   end
 end
