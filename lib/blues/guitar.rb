@@ -10,17 +10,18 @@ module Blues
     end
 
     def pick(string:, fret:, duration: 0.25)
-      positioning = FingerPosition.new(
-        string: @strings[string - 1],
-        fret: fret,
-        duration: duration,
-      )
+      @amplifier.amplify(@strings[string -1].pluck(fret: fret))
+      # positioning = FingerPosition.new(
+      #   string: @strings[string - 1],
+      #   fret: fret,
+      #   duration: duration,
+      # )
 
-      if @amplifier
-        @amplifier.amplify(positioning.note)
-      else
-        positioning
-      end
+      # if @amplifier
+      #   @amplifier.amplify(positioning.note)
+      # else
+      #   positioning
+      # end
     end
 
     def tune(tuning = :standard)

@@ -23,7 +23,7 @@ module Blues
         root_octave: @tuning_octave,
         offset: fret,
         duration: duration,
-      )
+      ).value
     end
 
     def heavy?
