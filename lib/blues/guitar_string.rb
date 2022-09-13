@@ -18,12 +18,14 @@ module Blues
     end
 
     def pluck(fret:, duration: 0.25)
-      Note.new(
+      note = Note.new(
         root_note: @tuning_note,
         root_octave: @tuning_octave,
         offset: fret,
         duration: duration,
-      ).value
+      )
+
+      [note.value, note.octave]
     end
 
     def heavy?
