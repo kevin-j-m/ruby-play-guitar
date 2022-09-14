@@ -61,14 +61,14 @@ module Blues
 
     def five
       [
-        guitar.pick(string: 5, fret: 5, duration: 0.6666),
-        guitar.pick(string: 4, fret: 7, duration: 0.3333),
-        guitar.pick(string: 3, fret: 4, duration: 0.6666),
-        guitar.pick(string: 4, fret: 7, duration: 0.333),
-        guitar.pick(string: 3, fret: 5, duration: 0.6666),
-        guitar.pick(string: 4, fret: 7, duration: 0.333),
-        guitar.pick(string: 3, fret: 4, duration: 0.666),
-        guitar.pick(string: 4, fret: 7, duration: 0.333),
+        guitar.pick(string: 4, fret: 2, duration: 0.6666),
+        guitar.pick(string: 3, fret: 4, duration: 0.3333),
+        guitar.pick(string: 3, fret: 6, duration: 0.6666),
+        guitar.pick(string: 3, fret: 4, duration: 0.333),
+        guitar.pick(string: 3, fret: 7, duration: 0.6666),
+        guitar.pick(string: 3, fret: 4, duration: 0.333),
+        guitar.pick(string: 3, fret: 6, duration: 0.666),
+        guitar.pick(string: 3, fret: 4, duration: 0.333),
       ]
     end
 

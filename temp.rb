@@ -256,35 +256,35 @@ with_synth :pluck do
 end
 sleep(0.333)
 with_synth :pluck do
-  play(:Db3, release: 0.6666)
+  play(:Eb3, release: 0.6666)
 end
 sleep(0.6666)
 with_synth :pluck do
-  play(:Ab3, release: 0.3333)
+  play(:Bb3, release: 0.3333)
 end
 sleep(0.3333)
 with_synth :pluck do
-  play(:Bb3, release: 0.6666)
+  play(:C4, release: 0.6666)
 end
 sleep(0.6666)
 with_synth :pluck do
-  play(:Ab3, release: 0.333)
+  play(:Bb3, release: 0.333)
 end
 sleep(0.333)
 with_synth :pluck do
-  play(:B3, release: 0.6666)
+  play(:Db4, release: 0.6666)
 end
 sleep(0.6666)
 with_synth :pluck do
-  play(:Ab3, release: 0.333)
+  play(:Bb3, release: 0.333)
 end
 sleep(0.333)
 with_synth :pluck do
-  play(:Bb3, release: 0.666)
+  play(:C4, release: 0.666)
 end
 sleep(0.666)
 with_synth :pluck do
-  play(:Ab3, release: 0.333)
+  play(:Bb3, release: 0.333)
 end
 sleep(0.333)
 with_synth :pluck do
