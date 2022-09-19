@@ -3,17 +3,23 @@
 module Blues
   module TubePower
     def turn_on
+      @on = true
       if @warm_up.nil?
         @warm_up = TubeWarmUp.new
       end
 
       super
+    rescue NoMethodError
+      nil
     end
 
     def turn_off
+      @on = false
       @warm_up = nil
 
       super
+    rescue NoMethodError
+      nil
     end
 
     def warm_up_complete?
