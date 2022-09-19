@@ -23,6 +23,10 @@ module Blues
       :heavy
     end
 
+    def volume=(vol)
+      @volume = vol
+    end
+
     private
 
     def on?
