@@ -2,6 +2,7 @@
 
 module Blues
   class Guitar
+    include Tuner
     attr_reader :strings
 
     def initialize(amplifier: nil)
@@ -21,10 +22,6 @@ module Blues
       else
         positioning
       end
-    end
-
-    def tune(tuning = :standard)
-      Tuner.new(self).tune(tuning)
     end
 
     def restring(gauge_set:)
