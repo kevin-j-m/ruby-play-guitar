@@ -2,7 +2,7 @@
 
 module Blues
   class Guitar
-    attr_reader :strings
+    attr_reader :strings, :amplifier
 
     def initialize(amplifier: nil)
       @strings = Array.new(6) { |i| GuitarString.new(number: i + 1) }
@@ -34,6 +34,10 @@ module Blues
           gauge_set: gauge_set,
         )
       end
+    end
+
+    def plug_in(amplifier:)
+      @amplifier = amplifier
     end
   end
 end

@@ -89,5 +89,17 @@ module Blues
           .to([13, 15, 19, 28, 38, 58])
       end
     end
+
+    describe "#plug_in" do
+      it "changes the amplifier to what's passed in" do
+        tube_amp = TubeAmplifier.new
+        guitar = Guitar.new
+
+        expect { guitar.plug_in(amplifier: tube_amp) }
+          .to change { guitar.amplifier }
+          .from(nil)
+          .to(tube_amp)
+      end
+    end
   end
 end
