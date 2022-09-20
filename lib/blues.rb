@@ -5,6 +5,7 @@ loader = Zeitwerk::Loader.for_gem
 loader.ignore("#{__dir__}/base_amp_shuffle.rb")
 loader.ignore("#{__dir__}/hybrid_shuffle.rb")
 loader.ignore("#{__dir__}/pi_shuffle.rb")
+loader.ignore("#{__dir__}/plug_in_pi_shuffle.rb")
 loader.ignore("#{__dir__}/solid_state_shuffle.rb")
 loader.ignore("#{__dir__}/tube_shuffle.rb")
 loader.setup
