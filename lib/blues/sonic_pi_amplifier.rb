@@ -2,8 +2,8 @@
 
 module Blues
   class SonicPiAmplifier < Amplifier
-    def initialize(volume: 0)
-      @on = false
+    def initialize(volume: 0, on: false)
+      @on = on
       @volume = volume
       @sounds = []
     end

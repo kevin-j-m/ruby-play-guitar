@@ -9,8 +9,7 @@ def play
   guitar.tune(:down_half_step)
   song = Blues::Shuffle.new(guitar)
 
-  amp = Blues::SonicPiAmplifier.new(volume: 10)
-  amp.turn_on
+  amp = Blues::SonicPiAmplifier.new(volume: 10, on: true)
   guitar.plug_in(amplifier: amp)
 
   song.play { |measure| measure.map { |sound| puts sound } }
