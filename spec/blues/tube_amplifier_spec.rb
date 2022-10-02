@@ -155,7 +155,7 @@ module Blues
       it "provides the sound value at the volume specified when fully warmed up" do
         amp = TubeAmplifier.new(volume: 10)
 
-        note = Note.new(root_note: :c, root_octave: 1, offset: 0)
+        note = Note.new(starting_note: :c, starting_octave: 1, offset: 0)
 
         Timecop.freeze do
           amp.turn_on
@@ -168,7 +168,7 @@ module Blues
       it "provides the sound value at a fraction of the volume specified when not warmed up" do
         amp = TubeAmplifier.new(volume: 10)
 
-        note = Note.new(root_note: :c, root_octave: 1, offset: 0)
+        note = Note.new(starting_note: :c, starting_octave: 1, offset: 0)
 
         Timecop.freeze do
           amp.turn_on

@@ -7,7 +7,7 @@ module Blues
         amp = PracticeAmplifier.new
         amp.turn_on
 
-        note = Note.new(root_note: :c, root_octave: 1, offset: 0)
+        note = Note.new(starting_note: :c, starting_octave: 1, offset: 0)
 
         expect(amp.amplify(note)).to be_nil
       end

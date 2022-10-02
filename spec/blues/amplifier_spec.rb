@@ -82,14 +82,14 @@ module Blues
         amp = Amplifier.new(volume: 3)
         amp.turn_on
 
-        note = Note.new(root_note: :c, root_octave: 1, offset: 0)
+        note = Note.new(starting_note: :c, starting_octave: 1, offset: 0)
 
         expect(amp.amplify(note)).to eq "C1 🔈[3]"
       end
 
       it "produces no sound when the amplifier isn't turned on" do
         amp = Amplifier.new(volume: 3)
-        note = Note.new(root_note: :c, root_octave: 1, offset: 0)
+        note = Note.new(starting_note: :c, starting_octave: 1, offset: 0)
 
         expect(amp.amplify(note)).to eq "🔇🔇[3]"
       end
@@ -98,7 +98,7 @@ module Blues
         amp = Amplifier.new(volume: 0)
         amp.turn_on
 
-        note = Note.new(root_note: :c, root_octave: 1, offset: 0)
+        note = Note.new(starting_note: :c, starting_octave: 1, offset: 0)
 
         expect(amp.amplify(note)).to eq "🔇🔇[0]"
       end

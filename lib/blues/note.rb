@@ -4,9 +4,9 @@ module Blues
   class Note
     attr_reader :duration
 
-    def initialize(root_note:, root_octave:, offset:, duration: 0.25)
-      @note_cycle = notes.rotate(notes.index(root_note)).cycle
-      @root_octave = root_octave
+    def initialize(starting_note:, starting_octave:, offset:, duration: 0.25)
+      @note_cycle = notes.rotate(notes.index(starting_note)).cycle
+      @starting_octave = starting_octave
       @offset = offset
       @duration = duration
     end
@@ -16,7 +16,7 @@ module Blues
     end
 
     def octave
-      @root_octave + octaves_progressed
+      @starting_octave + octaves_progressed
     end
 
     def to_s
@@ -36,14 +36,14 @@ module Blues
     def octaves_progressed
       cs_passed = note_progression.count(:c)
 
-      if c_root?
+      if c_start?
         cs_passed -= 1
       end
 
       cs_passed
     end
 
-    def c_root?
+    def c_start?
       @note_cycle.first == :c
     end
 
